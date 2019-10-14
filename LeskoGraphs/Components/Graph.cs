@@ -9,16 +9,15 @@ namespace LeskoGraphs.Components {
 
         //------------------------------------------
 
-        public readonly List<Node<T>> nodes = default;
+        public  readonly List<Node<T>>       nodes   = default;
+        private readonly List<IResultWaiter> waiters = default;
 
-        public int        iNodesCount = default;
-        public List<T>    bypass      = default;
-
-        public event Update OnUpdate;
-
-        private List<IResultWaiter> waiters;
+        public  int        iNodesCount = default;
+        public  List<T>    bypass      = default;
 
         private ITraversal travelsar = default;
+
+        public event Update OnUpdate;
 
         //------------------------------------------
 

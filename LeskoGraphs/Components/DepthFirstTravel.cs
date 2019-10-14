@@ -30,7 +30,7 @@ namespace LeskoGraphs.Components {
                 }
             }
 
-            graph.NotifyWaiters($"New node - { node.tValue } has been added to the path in the DFS");
+            graph.NotifyWaiters($"New node - { node.tValue } has been added to the path in DFS");
 
             graph.bypass.Add(node.tValue);
             visited[node] = (int)Colors.Black;
