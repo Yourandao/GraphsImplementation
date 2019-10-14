@@ -1,10 +1,14 @@
-﻿using LeskoGraphs.Components;
-using System;
+﻿using System;
+using LeskoGraphs.Components;
 
 namespace LeskoGraphs {
     internal class Program {
         private static void Main(string[] args) {
             Graph<int> graph = new Graph<int>(new BreadthFirstTravel());
+
+            Waiter<int> waiter = new Waiter<int>(graph);
+
+            graph.AddWaiter(waiter);
 
             graph.AddNode(new Node<int>(0));
             graph.AddNode(new Node<int>(1));
@@ -22,9 +26,10 @@ namespace LeskoGraphs {
             graph.AddNeighbour(5, 3, 4);
 
             Console.WriteLine(string.Join("->", graph));
-            graph.travelsar = new DepthFirstTravel();
-            Console.WriteLine(string.Join("->", graph));
 
+            graph.SetTraversal(new DepthFirstTravel());
+
+            Console.WriteLine(string.Join("->", graph));
         }
     }
 }

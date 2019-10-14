@@ -46,8 +46,11 @@
     <Compile Include="Components\BreadthFirstTravel.cs" />
     <Compile Include="Components\DepthFirstTravel.cs" />
     <Compile Include="Components\Graph.cs" />
-    <Compile Include="Components\ITraversal.cs" />
+    <Compile Include="Components\Interfaces\IObservable.cs" />
+    <Compile Include="Components\Interfaces\IResultWaiter.cs" />
+    <Compile Include="Components\Interfaces\ITraversal.cs" />
     <Compile Include="Components\Node.cs" />
+    <Compile Include="Components\Waiter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

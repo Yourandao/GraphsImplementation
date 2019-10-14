@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using LeskoGraphs.Components.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
-
-using Queue<T> = System.Collections.Generic.Queue<LeskoGraphs.Components.Node<T>>
 
 namespace LeskoGraphs.Components {
     public class BreadthFirstTravel : ITraversal {
@@ -22,6 +21,8 @@ namespace LeskoGraphs.Components {
 
                 foreach (var child in head.lnNeighbours.Where(kid => !visited.Contains(kid))) {
                     queue.Enqueue(child);
+
+                    graph.NotifyWaiters($"New node - { child.tValue } has been added to the path in BFS");
 
                     graph.bypass.Add(child.tValue);
                     visited.Add(child);

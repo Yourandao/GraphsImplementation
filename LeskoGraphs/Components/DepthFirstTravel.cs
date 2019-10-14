@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using LeskoGraphs.Components.Interfaces;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace LeskoGraphs.Components {
@@ -28,6 +29,8 @@ namespace LeskoGraphs.Components {
                     this.DepthFirstSearch(graph, visited, child);
                 }
             }
+
+            graph.NotifyWaiters($"New node - { node.tValue } has been added to the path in the DFS");
 
             graph.bypass.Add(node.tValue);
             visited[node] = (int)Colors.Black;

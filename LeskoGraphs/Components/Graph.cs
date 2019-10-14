@@ -1,22 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using LeskoGraphs.Components.Interfaces;
 
 namespace LeskoGraphs.Components {
-    public sealed class Graph<T> : IEnumerable<T> {
+
+    public delegate void Update(string message);
+    public sealed class Graph<T> : IEnumerable<T>, IObservable<T> {
+
+        //------------------------------------------
+
         public readonly List<Node<T>> nodes = default;
 
         public int        iNodesCount = default;
         public List<T>    bypass      = default;
 
-        public ITraversal travelMethod = default;
+        public event Update OnUpdate;
 
-        public Graph(ITraversal travelMethod) {
+        private List<IResultWaiter> waiters;
+
+        private ITraversal travelsar = default;
+
+        //------------------------------------------
+
+        public Graph(ITraversal travelsar) {
             this.nodes = new List<Node<T>>();
-            this.travelMethod = travelMethod;
+            this.waiters = new List<IResultWaiter>();
+
+            this.travelsar = travelsar;
+        }
+
+        public void SetTraversal(ITraversal travelsal) {
+            this.travelsar = travelsal;
         }
 
         public void AddNode(Node<T> node) {
             this.nodes.Add(node);
+
             ++this.iNodesCount;
         }
 
@@ -26,8 +45,28 @@ namespace LeskoGraphs.Components {
             }
         }
 
+        //------------------------------------------
+
+        public void AddWaiter(IResultWaiter waiter) {
+            this.waiters.Add(waiter);
+        }
+
+        public void RemoveWaiter(IResultWaiter waiter) {
+            this.waiters.Remove(waiter);
+        }
+
+        public void NotifyWaiters(string sMessage) {
+            for (int i = 0; i < this.waiters.Count; i++) {
+                this.waiters[i].Update(sMessage);
+            }
+
+            //OnUpdate?.Invoke(sMessage);
+        }
+
+        //------------------------------------------
+
         public IEnumerator<T> GetEnumerator() {
-            this.travelMethod.Travel(this);
+            this.travelsar.Travel(this);
             foreach (var item in this.bypass) {
                 yield return item;
             }
