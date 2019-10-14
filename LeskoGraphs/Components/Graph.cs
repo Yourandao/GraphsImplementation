@@ -9,8 +9,6 @@ namespace LeskoGraphs.Components {
         public List<Node<T>> nodes = default;
         public List<T> bypass = default;
 
-        public Dictionary<Node<T>, int> visited = default;
-
         public ITraversal travelMethod = default;
 
         public Graph(ITraversal method) {
@@ -28,6 +26,8 @@ namespace LeskoGraphs.Components {
         }
 
         public IEnumerator<T> GetEnumerator() {
+            //var a = this;
+            //this.travelMethod.Travel(ref a);
             this.travelMethod.Travel(this);
             foreach (var item in this.bypass) {
                 yield return item;
