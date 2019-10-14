@@ -34,8 +34,6 @@ namespace LeskoGraphs {
             graph.AddNeighbour(5, 3);
             graph.AddNeighbour(5, 4);
 
-            graph.DepthFirstSearch();
-
             Console.WriteLine(string.Join("->", graph));
         }
     }

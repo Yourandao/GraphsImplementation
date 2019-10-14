@@ -4,3 +4,9 @@ F:\Programming\repos\LeskoGraphs\LeskoGraphs\bin\Debug\LeskoGraphs.pdb
 F:\Programming\repos\LeskoGraphs\LeskoGraphs\obj\Debug\LeskoGraphs.csprojAssemblyReference.cache
 F:\Programming\repos\LeskoGraphs\LeskoGraphs\obj\Debug\LeskoGraphs.exe
 F:\Programming\repos\LeskoGraphs\LeskoGraphs\obj\Debug\LeskoGraphs.pdb
+F:\Programming\repos\GraphsImplementation\LeskoGraphs\obj\Debug\LeskoGraphs.csprojAssemblyReference.cache
+F:\Programming\repos\GraphsImplementation\LeskoGraphs\obj\Debug\LeskoGraphs.exe
+F:\Programming\repos\GraphsImplementation\LeskoGraphs\obj\Debug\LeskoGraphs.pdb
+F:\Programming\repos\GraphsImplementation\LeskoGraphs\bin\Debug\LeskoGraphs.exe.config
+F:\Programming\repos\GraphsImplementation\LeskoGraphs\bin\Debug\LeskoGraphs.exe
+F:\Programming\repos\GraphsImplementation\LeskoGraphs\bin\Debug\LeskoGraphs.pdb

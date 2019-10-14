@@ -36,7 +36,7 @@ namespace LeskoGraphs.Components {
             this.nodes[iIndexFrom].AddNeighbour(this.nodes[iIndexTo]);
         }
 
-        public void DepthFirstSearch() {
+        private void DepthFirstSearch() {
             this.visited = new Dictionary<Node<T>, int>();
             this.bypass = new List<T>();
 
@@ -67,6 +67,7 @@ namespace LeskoGraphs.Components {
         }
 
         public IEnumerator<T> GetEnumerator() {
+            DepthFirstSearch();
             foreach (var item in this.bypass) {
                 yield return item;
             }
