@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace LeskoGraphs.Components {
     public sealed class Graph<T> : IEnumerable<T> {
-        public int iNodesCount = default;
-        public List<Node<T>> nodes = default;
-        public List<T> bypass = default;
+        public readonly List<Node<T>> nodes = default;
+
+        public int        iNodesCount = default;
+        public List<T>    bypass      = default;
 
         public ITraversal travelMethod = default;
 
-        public Graph(ITraversal method) {
+        public Graph(ITraversal travelMethod) {
             this.nodes = new List<Node<T>>();
-            this.travelMethod = method;
+            this.travelMethod = travelMethod;
         }
 
         public void AddNode(Node<T> node) {
@@ -21,13 +20,13 @@ namespace LeskoGraphs.Components {
             ++this.iNodesCount;
         }
 
-        public void AddNeighbour(int iIndexFrom, int iIndexTo) {
-            this.nodes[iIndexFrom].AddNeighbour(this.nodes[iIndexTo]);
+        public void AddNeighbour(int iIndexFrom, params int[] neighbours) {
+            for (int i = 0; i < neighbours.Length; i++) {
+                this.nodes[iIndexFrom].AddNeighbour(this.nodes[neighbours[i]]);
+            }
         }
 
         public IEnumerator<T> GetEnumerator() {
-            //var a = this;
-            //this.travelMethod.Travel(ref a);
             this.travelMethod.Travel(this);
             foreach (var item in this.bypass) {
                 yield return item;
