@@ -2,12 +2,8 @@
 
 namespace LeskoGraphs.Components {
     public sealed class Node<T> {
-        public T tValue = default;
-        public List<Node<T>> lnNeighbours = default;
-
-        public Node() {
-            this.lnNeighbours = new List<Node<T>>();
-        }
+        public readonly T tValue = default;
+        public readonly List<Node<T>> lnNeighbours = default;
 
         public Node(T value) {
             this.tValue = value;

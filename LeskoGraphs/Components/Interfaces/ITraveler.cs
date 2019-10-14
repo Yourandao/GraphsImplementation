@@ -1,5 +1,5 @@
 ﻿namespace LeskoGraphs.Components.Interfaces {
-    public interface ITraversal {
+    public interface ITraveler {
         void Travel<T>(Graph<T> graph);
     }
 }

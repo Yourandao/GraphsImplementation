@@ -7,8 +7,6 @@ namespace LeskoGraphs.Components {
             @object.OnUpdate += this.Update;
         }
 
-        public void Update(string sMessage) {
-            Console.WriteLine(sMessage);
-        }
+        public void Update(string sMessage) => Console.WriteLine(sMessage);
     }
 }

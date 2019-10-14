@@ -3,28 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace LeskoGraphs.Components {
-    public class BreadthFirstTravel : ITraversal {
+    public class BreadthFirstTravel : ITraveler {
         public void Travel<T>(Graph<T> graph) {
-            graph.bypass = new List<T>();
-
             Queue<Node<T>>   queue   = new Queue<Node<T>>();
             HashSet<Node<T>> visited = new HashSet<Node<T>>();
 
-            queue.Enqueue(graph.nodes[0]);
-            graph.bypass.Add(graph.nodes[0].tValue);
+            graph.path.Clear();
 
-            visited.Add(graph.nodes[0]);
+            queue.Enqueue(graph.lnNodes[0]);
+            graph.path.Add(graph.lnNodes[0].tValue);
+
+            visited.Add(graph.lnNodes[0]);
 
             while (queue.Any()) {
                 Node<T> head = queue.First();
+                List<Node<T>> lnNotVisited = head.lnNeighbours.FindAll(kid => !visited.Contains(kid)).ToList();
+
                 queue.Dequeue();
 
-                foreach (var child in head.lnNeighbours.Where(kid => !visited.Contains(kid))) {
+                for (int i = 0; i < lnNotVisited.Count; i++) {
+                    Node<T> child = lnNotVisited[i];
                     queue.Enqueue(child);
 
                     graph.NotifyWaiters($"New node - { child.tValue } has been added to the path in BFS");
 
-                    graph.bypass.Add(child.tValue);
+                    graph.path.Add(child.tValue);
                     visited.Add(child);
                 }
             }
