@@ -9,7 +9,7 @@ using LeskoGraphs.Components;
 namespace LeskoGraphs {
     class Program {
         static void Main(string[] args) {
-            Graph<int> graph = new Graph<int>();
+            Graph<int> graph = new Graph<int>(new DepthFirstTravel());
 
             graph.AddNode(new Node<int>(0));
             graph.AddNode(new Node<int>(1));

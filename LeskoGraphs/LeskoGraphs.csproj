@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\DepthFirstTravel.cs" />
     <Compile Include="Components\Graph.cs" />
+    <Compile Include="Components\ITraversal.cs" />
     <Compile Include="Components\Node.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
