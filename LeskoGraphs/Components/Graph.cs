@@ -5,7 +5,7 @@ using LeskoGraphs.Components.Interfaces;
 namespace LeskoGraphs.Components {
 
     public delegate void Update(string message);
-    public sealed class Graph<T> : IEnumerable<T>, IObservable<T> {
+    public sealed class Graph<T> : IEnumerable<T>, IEnumerator<T>, IObservable<T> {
 
         //------------------------------------------
 
@@ -63,15 +63,34 @@ namespace LeskoGraphs.Components {
 
         //------------------------------------------
 
+        public int iCurrentItemIndex = 0;
+
+        public T Current => this.path[iCurrentItemIndex];
+
+        object IEnumerator.Current => this.path[iCurrentItemIndex];
+
         public IEnumerator<T> GetEnumerator() {
             this.travelsar.Travel(this);
-            foreach (var item in this.path) {
-                yield return item;
-            }
+
+            return this;
         }
 
         IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
+        }
+
+        public void Dispose() {
+            this.path.Clear();
+        }
+
+        public bool MoveNext() {
+            this.iCurrentItemIndex++;
+
+            return this.iCurrentItemIndex < this.path.Count;
+        }
+
+        public void Reset() {
+            this.iCurrentItemIndex = 0;
         }
     }
 }

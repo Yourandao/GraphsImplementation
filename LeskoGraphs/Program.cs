@@ -26,11 +26,17 @@ namespace LeskoGraphs {
             graph.AddNeighbour(4, 0, 3, 5);
             graph.AddNeighbour(5, 3, 4);
 
-            Console.WriteLine(string.Join("->", graph));
+            var a  = graph.GetEnumerator();
+            Console.WriteLine(a.Current);
+            a.MoveNext();
+            Console.WriteLine(a.Current);
 
-            graph.SetTraversal(new DepthFirstTravel());
 
-            Console.WriteLine(string.Join("->", graph));
+            //Console.WriteLine(string.Join("->", graph));
+
+            //graph.SetTraversal(new DepthFirstTravel());
+
+            //Console.WriteLine(string.Join("->", graph));
         }
     }
 }
