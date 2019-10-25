@@ -9,19 +9,22 @@ namespace LeskoGraphs.Components {
 
         //------------------------------------------
 
-        public  readonly List<Node<T>>       lnNodes   = default;
-        private readonly List<IResultWaiter> lwWaiters = default;
+        public  readonly List<Node<T>> lnNodes   = default;
 
         public int iNodesCount = default;
         public readonly List<T> path = default;
 
-        private ITraveler travelsar = default;
-
         public event Update OnUpdate;
 
-        //------------------------------------------
+        private readonly List<IResultWaiter> lwWaiters = default;
 
-        public Graph(ITraveler travelsar) {
+        private ITraveler travelsar = default;
+
+        private int iCurrentItemIndex = -1;
+
+		//------------------------------------------
+
+		public Graph(ITraveler travelsar) {
             this.lnNodes   = new List<Node<T>>();
             this.path  = new List<T>();
             this.lwWaiters = new List<IResultWaiter>();
@@ -29,9 +32,7 @@ namespace LeskoGraphs.Components {
             this.travelsar = travelsar;
         }
 
-        public void SetTraversal(ITraveler travelsal) => this.travelsar = travelsal;
-
-        public void AddNode(Node<T> node) {
+		public void AddNode(Node<T> node) {
             this.lnNodes.Add(node);
 
             ++this.iNodesCount;
@@ -44,30 +45,23 @@ namespace LeskoGraphs.Components {
         }
 
         //------------------------------------------
+        public void SetTraversal(ITraveler travelsal) => this.travelsar = travelsal;
 
-        public void AddWaiter(IResultWaiter waiter) {
-            this.lwWaiters.Add(waiter);
-        }
+        public void AddWaiter(IResultWaiter waiter) => this.lwWaiters.Add(waiter);
 
-        public void RemoveWaiter(IResultWaiter waiter) {
-            this.lwWaiters.Remove(waiter);
-        }
+        public void RemoveWaiter(IResultWaiter waiter) => this.lwWaiters.Remove(waiter);
 
-        public void NotifyWaiters(string sMessage) {
-            for (int i = 0; i < this.lwWaiters.Count; i++) {
-                this.lwWaiters[i].Update(sMessage);
-            }
-
-            //OnUpdate?.Invoke(sMessage);
-        }
+        public void NotifyWaiters(string sMessage) => OnUpdate?.Invoke(sMessage);
 
         //------------------------------------------
 
-        public int iCurrentItemIndex = 0;
+        public T Current {
+	        get => this.path[this.iCurrentItemIndex];
+        }
 
-        public T Current => this.path[iCurrentItemIndex];
-
-        object IEnumerator.Current => this.path[iCurrentItemIndex];
+        object IEnumerator.Current {
+	        get => this.path[this.iCurrentItemIndex];
+        }
 
         public IEnumerator<T> GetEnumerator() {
             this.travelsar.Travel(this);
@@ -80,6 +74,7 @@ namespace LeskoGraphs.Components {
         }
 
         public void Dispose() {
+	        this.iCurrentItemIndex = -1;
             this.path.Clear();
         }
 
@@ -90,7 +85,7 @@ namespace LeskoGraphs.Components {
         }
 
         public void Reset() {
-            this.iCurrentItemIndex = 0;
+            this.iCurrentItemIndex = -1;
         }
     }
 }

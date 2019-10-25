@@ -5,6 +5,5 @@
         void AddWaiter(IResultWaiter waiter);
         void RemoveWaiter(IResultWaiter waiter);
         void NotifyWaiters(string sMessage);
-        void AddNode(Node<T> node);
     }
 }
