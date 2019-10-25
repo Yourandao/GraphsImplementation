@@ -43,8 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\BreadthFirstTravel.cs" />
-    <Compile Include="Components\DepthFirstTravel.cs" />
+    <Compile Include="Components\Travels\BreadthFirstTravel.cs" />
+    <Compile Include="Components\Travels\DepthFirstTravel.cs" />
     <Compile Include="Components\Graph.cs" />
     <Compile Include="Components\Interfaces\IObservable.cs" />
     <Compile Include="Components\Interfaces\IResultWaiter.cs" />

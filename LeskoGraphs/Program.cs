@@ -1,4 +1,5 @@
 ﻿using LeskoGraphs.Components;
+using LeskoGraphs.Components.Travels;
 using System;
 
 namespace LeskoGraphs {

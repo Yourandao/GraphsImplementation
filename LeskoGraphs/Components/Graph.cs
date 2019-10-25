@@ -8,10 +8,9 @@ namespace LeskoGraphs.Components {
     public sealed class Graph<T> : IEnumerable<T>, IEnumerator<T>, IObservable<T> {
 
         //------------------------------------------
-
-        public  readonly List<Node<T>> lnNodes   = default;
-
         public int iNodesCount = default;
+
+        public readonly List<Node<T>> lnNodes = default;
         public readonly List<T> path = default;
 
         public event Update OnUpdate;
@@ -19,13 +18,12 @@ namespace LeskoGraphs.Components {
         private readonly List<IResultWaiter> lwWaiters = default;
 
         private ITraveler travelsar = default;
-
         private int iCurrentItemIndex = -1;
 
 		//------------------------------------------
 
 		public Graph(ITraveler travelsar) {
-            this.lnNodes   = new List<Node<T>>();
+            this.lnNodes = new List<Node<T>>();
             this.path  = new List<T>();
             this.lwWaiters = new List<IResultWaiter>();
 
@@ -39,8 +37,8 @@ namespace LeskoGraphs.Components {
         }
 
         public void AddNeighbour(int iIndexFrom, params int[] neighbours) {
-            for (int i = 0; i < neighbours.Length; i++) {
-                this.lnNodes[iIndexFrom].AddNeighbour(this.lnNodes[neighbours[i]]);
+            for (int item = 0; item < neighbours.Length; item++) {
+                this.lnNodes[iIndexFrom].AddNeighbour(this.lnNodes[neighbours[item]]);
             }
         }
 
@@ -78,14 +76,8 @@ namespace LeskoGraphs.Components {
             this.path.Clear();
         }
 
-        public bool MoveNext() {
-            this.iCurrentItemIndex++;
+        public bool MoveNext() => ++this.iCurrentItemIndex < this.path.Count;
 
-            return this.iCurrentItemIndex < this.path.Count;
-        }
-
-        public void Reset() {
-            this.iCurrentItemIndex = -1;
-        }
+        public void Reset() => this.iCurrentItemIndex = -1;
     }
 }

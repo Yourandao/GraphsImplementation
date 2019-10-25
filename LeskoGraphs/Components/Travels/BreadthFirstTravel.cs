@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LeskoGraphs.Components {
+namespace LeskoGraphs.Components.Travels {
     public class BreadthFirstTravel : ITraveler {
         public void Travel<T>(Graph<T> graph) {
             Queue<Node<T>>   queue   = new Queue<Node<T>>();
@@ -17,7 +17,7 @@ namespace LeskoGraphs.Components {
 
             while (queue.Any()) {
                 Node<T> head = queue.First();
-                List<Node<T>> lnNotVisited = head.lnNeighbours.FindAll(kid => !visited.Contains(kid)).ToList();
+                List<Node<T>> lnNotVisited = head.lnNeighbours.Where(kid => !visited.Contains(kid)).ToList();
 
                 queue.Dequeue();
 

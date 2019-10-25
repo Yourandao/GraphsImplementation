@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LeskoGraphs.Components {
+namespace LeskoGraphs.Components.Travels {
     public class DepthFirstTravel : ITraveler {
         private enum Colors : int {
             White,
@@ -23,7 +23,7 @@ namespace LeskoGraphs.Components {
 
         private void DepthFirstSearch<T>(Graph<T> graph, Dictionary<Node<T>, int> visited, Node<T> node) {
             visited[node] = (int)Colors.Gray;
-            List<Node<T>> lnNotVisited = node.lnNeighbours.FindAll(item => visited[item] != (int)Colors.Black).ToList();
+            List<Node<T>> lnNotVisited = node.lnNeighbours.Where(item => visited[item] != (int)Colors.Black).ToList();
 
             for (int i = 0; i < lnNotVisited.Count; i++) {
                 Node<T> child = lnNotVisited[i];
