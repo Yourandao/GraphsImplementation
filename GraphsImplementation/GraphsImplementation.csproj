@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5B778C88-A896-4383-9F1E-C2F533E63AF6}</ProjectGuid>
+    <ProjectGuid>{3CBA67D6-211F-414B-9702-9B25A3A50EE0}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>LeskoGraphs</RootNamespace>
-    <AssemblyName>LeskoGraphs</AssemblyName>
+    <RootNamespace>GraphsImplementation</RootNamespace>
+    <AssemblyName>GraphsImplementation</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,14 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\Travels\BreadthFirstTravel.cs" />
-    <Compile Include="Components\Travels\DepthFirstTravel.cs" />
     <Compile Include="Components\Graph.cs" />
-    <Compile Include="Components\Interfaces\IObservable.cs" />
-    <Compile Include="Components\Interfaces\IResultWaiter.cs" />
     <Compile Include="Components\Interfaces\ITraveler.cs" />
     <Compile Include="Components\Node.cs" />
-    <Compile Include="Components\Waiter.cs" />
+    <Compile Include="Components\Observer\NodeProcessor.cs" />
+    <Compile Include="Components\Observer\Unsubscriber.cs" />
+    <Compile Include="Components\Travels\BreadthFirstTravel.cs" />
+    <Compile Include="Components\Travels\DepthFirstTravel.cs" />
+    <Compile Include="Components\Observer\Waiter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

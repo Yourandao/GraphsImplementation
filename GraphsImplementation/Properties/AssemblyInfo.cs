@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LeskoGraphs")]
+[assembly: AssemblyTitle("GraphsImplementation")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LeskoGraphs")]
+[assembly: AssemblyProduct("GraphsImplementation")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("5b778c88-a896-4383-9f1e-c2f533e63af6")]
+[assembly: Guid("3cba67d6-211f-414b-9702-9b25a3a50ee0")]
 
 // Version information for an assembly consists of the following four values:
 //
