@@ -3,15 +3,15 @@
 namespace LeskoGraphs.Components {
     public sealed class Node<T> {
         public readonly T tValue = default;
-        public readonly List<Node<T>> lnNeighbours = default;
+        public readonly List<Node<T>> aNeighbours = default;
 
         public Node(T value) {
             this.tValue = value;
-            this.lnNeighbours = new List<Node<T>>();
+            this.aNeighbours = new List<Node<T>>();
         }
 
-        public void AddNeighbour(Node<T> node) {
-            this.lnNeighbours.Add(node);
+        public void AddNeighbour(Node<T> rNode) {
+            this.aNeighbours.Add(rNode);
         }
     }
 }

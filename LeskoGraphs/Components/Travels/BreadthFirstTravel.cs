@@ -4,20 +4,20 @@ using System.Linq;
 
 namespace LeskoGraphs.Components.Travels {
     public class BreadthFirstTravel : ITraveler {
-        public void Travel<T>(Graph<T> graph) {
+        public void Travel<T>(Graph<T> rGraph) {
             Queue<Node<T>>   queue   = new Queue<Node<T>>();
             HashSet<Node<T>> visited = new HashSet<Node<T>>();
 
-            graph.path.Clear();
+            rGraph.aPath.Clear();
 
-            queue.Enqueue(graph.lnNodes[0]);
-            graph.path.Add(graph.lnNodes[0].tValue);
+            queue.Enqueue(rGraph.aNodes[0]);
+            rGraph.aPath.Add(rGraph.aNodes[0].tValue);
 
-            visited.Add(graph.lnNodes[0]);
+            visited.Add(rGraph.aNodes[0]);
 
             while (queue.Any()) {
                 Node<T> head = queue.First();
-                List<Node<T>> lnNotVisited = head.lnNeighbours.Where(kid => !visited.Contains(kid)).ToList();
+                List<Node<T>> lnNotVisited = head.aNeighbours.Where(kid => !visited.Contains(kid)).ToList();
 
                 queue.Dequeue();
 
@@ -25,9 +25,9 @@ namespace LeskoGraphs.Components.Travels {
                     Node<T> child = lnNotVisited[i];
                     queue.Enqueue(child);
 
-                    graph.NotifyWaiters($"New node - { child.tValue } has been added to the path in BFS");
+                    rGraph.NotifyWaiters($"New node - { child.tValue } has been added to the path in BFS");
 
-                    graph.path.Add(child.tValue);
+                    rGraph.aPath.Add(child.tValue);
                     visited.Add(child);
                 }
             }

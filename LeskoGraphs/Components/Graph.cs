@@ -8,57 +8,57 @@ namespace LeskoGraphs.Components {
     public sealed class Graph<T> : IEnumerable<T>, IEnumerator<T>, IObservable<T> {
 
         //------------------------------------------
-        public int iNodesCount = default;
+        public  int iNodesCount = default;
 
-        public readonly List<Node<T>> lnNodes = default;
-        public readonly List<T> path = default;
+        public  readonly List<Node<T>> aNodes = default;
+        public  readonly List<T> aPath = default;
 
-        public event Update OnUpdate;
+        public  event Update OnUpdate;
 
-        private readonly List<IResultWaiter> lwWaiters = default;
+        private readonly List<IResultWaiter> aWaiters = default;
 
         private ITraveler travelsar = default;
         private int iCurrentItemIndex = -1;
 
 		//------------------------------------------
 
-		public Graph(ITraveler travelsar) {
-            this.lnNodes = new List<Node<T>>();
-            this.path  = new List<T>();
-            this.lwWaiters = new List<IResultWaiter>();
+		public Graph(ITraveler rTravelsar) {
+            this.aNodes = new List<Node<T>>();
+            this.aPath  = new List<T>();
+            this.aWaiters = new List<IResultWaiter>();
 
-            this.travelsar = travelsar;
+            this.travelsar = rTravelsar;
         }
 
-		public void AddNode(Node<T> node) {
-            this.lnNodes.Add(node);
+		public void AddNode(Node<T> rNode) {
+            this.aNodes.Add(rNode);
 
             ++this.iNodesCount;
         }
 
-        public void AddNeighbour(int iIndexFrom, params int[] neighbours) {
-            for (int item = 0; item < neighbours.Length; item++) {
-                this.lnNodes[iIndexFrom].AddNeighbour(this.lnNodes[neighbours[item]]);
+        public void AddNeighbour(int iIndexFrom, params int[] aNeighbours) {
+            for (int item = 0; item < aNeighbours.Length; item++) {
+                this.aNodes[iIndexFrom].AddNeighbour(this.aNodes[aNeighbours[item]]);
             }
         }
 
         //------------------------------------------
-        public void SetTraversal(ITraveler travelsal) => this.travelsar = travelsal;
+        public void SetTraversal(ITraveler rTravelsal) => this.travelsar = rTravelsal;
 
-        public void AddWaiter(IResultWaiter waiter) => this.lwWaiters.Add(waiter);
+        public void AddWaiter(IResultWaiter rWaiter) => this.aWaiters.Add(rWaiter);
 
-        public void RemoveWaiter(IResultWaiter waiter) => this.lwWaiters.Remove(waiter);
+        public void RemoveWaiter(IResultWaiter rWaiter) => this.aWaiters.Remove(rWaiter);
 
         public void NotifyWaiters(string sMessage) => OnUpdate?.Invoke(sMessage);
 
         //------------------------------------------
 
         public T Current {
-	        get => this.path[this.iCurrentItemIndex];
+	        get => this.aPath[this.iCurrentItemIndex];
         }
 
         object IEnumerator.Current {
-	        get => this.path[this.iCurrentItemIndex];
+	        get => this.aPath[this.iCurrentItemIndex];
         }
 
         public IEnumerator<T> GetEnumerator() {
@@ -73,10 +73,10 @@ namespace LeskoGraphs.Components {
 
         public void Dispose() {
 	        this.iCurrentItemIndex = -1;
-            this.path.Clear();
+            this.aPath.Clear();
         }
 
-        public bool MoveNext() => ++this.iCurrentItemIndex < this.path.Count;
+        public bool MoveNext() => ++this.iCurrentItemIndex < this.aPath.Count;
 
         public void Reset() => this.iCurrentItemIndex = -1;
     }

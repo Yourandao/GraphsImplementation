@@ -5,37 +5,37 @@ using System;
 namespace LeskoGraphs {
 	internal class Program {
 		private static void Main(string[] args) {
-			Graph<int> graph = new Graph<int>(new BreadthFirstTravel());
+			Graph<int> rGraph = new Graph<int>(new BreadthFirstTravel());
 
-			Waiter<int> waiter = new Waiter<int>(graph);
+			Waiter<int> waiter = new Waiter<int>(rGraph);
 
-			graph.AddWaiter(waiter);
+			rGraph.AddWaiter(waiter);
 
-			graph.AddNode(new Node<int>(0));
-			graph.AddNode(new Node<int>(1));
-			graph.AddNode(new Node<int>(2));
-			graph.AddNode(new Node<int>(3));
-			graph.AddNode(new Node<int>(4));
-			graph.AddNode(new Node<int>(5));
-			graph.AddNode(new Node<int>(6));
+			rGraph.AddNode(new Node<int>(0));
+			rGraph.AddNode(new Node<int>(1));
+			rGraph.AddNode(new Node<int>(2));
+			rGraph.AddNode(new Node<int>(3));
+			rGraph.AddNode(new Node<int>(4));
+			rGraph.AddNode(new Node<int>(5));
+			rGraph.AddNode(new Node<int>(6));
 
-			graph.AddNeighbour(0, 1, 4);
-			graph.AddNeighbour(1, 0, 2, 3);
-			graph.AddNeighbour(2, 1);
-			graph.AddNeighbour(3, 1, 4, 5);
-			graph.AddNeighbour(4, 0, 3, 5);
-			graph.AddNeighbour(5, 3, 4);
+			rGraph.AddNeighbour(0, 1, 4);
+			rGraph.AddNeighbour(1, 0, 2, 3);
+			rGraph.AddNeighbour(2, 1);
+			rGraph.AddNeighbour(3, 1, 4, 5);
+			rGraph.AddNeighbour(4, 0, 3, 5);
+			rGraph.AddNeighbour(5, 3, 4);
 
-			using (var b = graph.GetEnumerator()) {
-				while (b.MoveNext()) {
-					Console.Write(b.Current + "->");
+			using (var aGraphEnum = rGraph.GetEnumerator()) {
+				while (aGraphEnum.MoveNext()) {
+					Console.Write(aGraphEnum.Current + "->");
 				}
 				Console.WriteLine();
 			}
 
-			graph.SetTraversal(new DepthFirstTravel());
+			rGraph.SetTraversal(new DepthFirstTravel());
 
-			Console.WriteLine(string.Join("->", graph));
+			Console.WriteLine(string.Join("->", rGraph));
 		}
 	}
 }

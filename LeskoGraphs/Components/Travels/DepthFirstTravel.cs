@@ -10,33 +10,33 @@ namespace LeskoGraphs.Components.Travels {
             Black
         }
 
-        public void Travel<T>(Graph<T> graph) {
-            graph.path.Clear();
+        public void Travel<T>(Graph<T> rGraph) {
+            rGraph.aPath.Clear();
             Dictionary<Node<T>, int> visited = new Dictionary<Node<T>, int>();
 
-            for (int iter = 0; iter < graph.iNodesCount; iter++) {
-                visited.Add(graph.lnNodes[iter], (int)Colors.White);
+            for (int iter = 0; iter < rGraph.iNodesCount; iter++) {
+                visited.Add(rGraph.aNodes[iter], (int)Colors.White);
             }
 
-            this.DepthFirstSearch(graph, visited, graph.lnNodes[0]);
+            this.DepthFirstSearch(rGraph, visited, rGraph.aNodes[0]);
         }
 
-        private void DepthFirstSearch<T>(Graph<T> graph, Dictionary<Node<T>, int> visited, Node<T> node) {
-            visited[node] = (int)Colors.Gray;
-            List<Node<T>> lnNotVisited = node.lnNeighbours.Where(item => visited[item] != (int)Colors.Black).ToList();
+        private void DepthFirstSearch<T>(Graph<T> rGraph, Dictionary<Node<T>, int> visited, Node<T> rNode) {
+            visited[rNode] = (int)Colors.Gray;
+            List<Node<T>> lnNotVisited = rNode.aNeighbours.Where(item => visited[item] != (int)Colors.Black).ToList();
 
             for (int i = 0; i < lnNotVisited.Count; i++) {
                 Node<T> child = lnNotVisited[i];
 
                 if (visited[child] == (int)Colors.White) {
-                    this.DepthFirstSearch(graph, visited, child);
+                    this.DepthFirstSearch(rGraph, visited, child);
                 }
             }
 
-            graph.NotifyWaiters($"New node - { node.tValue } has been added to the path in DFS");
+            rGraph.NotifyWaiters($"New node - { rNode.tValue } has been added to the path in DFS");
 
-            graph.path.Add(node.tValue);
-            visited[node] = (int)Colors.Black;
+            rGraph.aPath.Add(rNode.tValue);
+            visited[rNode] = (int)Colors.Black;
         }
     }
 }
