@@ -1,3 +1,5 @@
 .vs
 _ReSharper.Caches
 db.lock
+bin/
+obj/

@@ -1,6 +1,0 @@
-F:\Programming\repos\GraphsImplementation\GraphsImplementation\bin\Debug\GraphsImplementation.exe.config
-F:\Programming\repos\GraphsImplementation\GraphsImplementation\bin\Debug\GraphsImplementation.exe
-F:\Programming\repos\GraphsImplementation\GraphsImplementation\bin\Debug\GraphsImplementation.pdb
-F:\Programming\repos\GraphsImplementation\GraphsImplementation\obj\Debug\GraphsImplementation.csprojAssemblyReference.cache
-F:\Programming\repos\GraphsImplementation\GraphsImplementation\obj\Debug\GraphsImplementation.exe
-F:\Programming\repos\GraphsImplementation\GraphsImplementation\obj\Debug\GraphsImplementation.pdb
